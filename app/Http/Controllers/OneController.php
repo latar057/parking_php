@@ -8,8 +8,9 @@ use Illuminate\Http\Request;
 class OneController extends Controller
 {
     public function read() {
+        # Выборка основного списка клиентов
         $clients = DB::select(
-            'SELECT name, brand, number
+            'SELECT client_id, name, brand, number
             FROM clients 
             INNER JOIN cars ON clients.id = cars.client_id'
             );
@@ -17,10 +18,12 @@ class OneController extends Controller
     }
 
     public function create() {
+        # Отображение форм добавления данных
         return view('create');
     }
     
     public function createClient(Request $request) {
+        # Добавление клиента в БД
         DB::insert(
             'INSERT INTO clients (id, name, gender, phone, adress, car)
             VALUES (NULL, ?, ?, ?, ?, ?)',
@@ -36,7 +39,7 @@ class OneController extends Controller
     }
 
     public function createCar(Request $request) {
-        
+        # Добавление автомобилей в БД
         DB::insert(
             'INSERT INTO cars (brand, model, color, number, flag, client_id)
             VALUES (?, ?, ?, ?, ?, (
@@ -54,5 +57,11 @@ class OneController extends Controller
         );
         
         return redirect()->route('create');
+    }
+
+    public function update(Request $request) {
+        # Отображение обнавления данных
+        $id = $request->query('id');
+        return view('updates', ['id' => $id]);
     }
 }

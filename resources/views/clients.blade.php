@@ -13,13 +13,15 @@
 		<th>Автомобиль</th>
 		<th>Государственный номер</th>
 		<th>&#9998;</th>
-		<th style="color: red;">&#10006;</th>
+		<th>&#10006;</th>
 	</tr>
 	@foreach($clients as $el)
 	<tr>
 		<td>{{ $el->name }}</td>
 		<td>{{ $el->brand }}</td>
 		<td>{{ $el->number }}</td>
+		<td><a href="updates?id={{ $el->client_id }}">Редактировать</a></td>
+		<td><a href="" style="color: red;">Удалить</a></td>
 	</tr>
 	@endforeach
 </table>

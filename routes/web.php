@@ -21,3 +21,5 @@ Route::get('/create', 'OneController@create')->name('create');
 Route::post('/create/client', 'OneController@createClient');
 
 Route::post('/create/car', 'OneController@createCar');
+
+Route::get('/updates', 'OneController@update');
