@@ -22,8 +22,8 @@ class OneController extends Controller
     
     public function createClient(Request $request) {
         DB::insert(
-            'INSERT INTO clients (name, gender, phone, adress, car)
-            VALUES (?, ?, ?, ?, ?)',
+            'INSERT INTO clients (id, name, gender, phone, adress, car)
+            VALUES (NULL, ?, ?, ?, ?, ?)',
             [
                 $request->input('name'),
                 $request->input('gender'),
@@ -37,24 +37,19 @@ class OneController extends Controller
 
     public function createCar(Request $request) {
         
-        $client_id = DB::select(
-            'SELECT id FROM clients
-            ORDER BY id DESC
-            LIMIT 1'
-            );
-        
-        $client_id = json_decode(json_encode($client_id), true);
-
         DB::insert(
             'INSERT INTO cars (brand, model, color, number, flag, client_id)
-            VALUES (?, ?, ?, ?, ?, ?)',
+            VALUES (?, ?, ?, ?, ?, (
+                SELECT id FROM clients
+                ORDER BY id DESC
+                LIMIT 1
+            ))',
             [
                 $request->input('brand'),
                 $request->input('model'),
                 $request->input('color'),
                 $request->input('number'),
                 $request->input('flag'),
-                
             ]
         );
         
