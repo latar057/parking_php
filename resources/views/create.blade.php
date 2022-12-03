@@ -6,9 +6,9 @@
 
 @section('content')
 <h4><a href="clients">назад</a></h4>
-<h2>Добавить клиента</h2>
 <form action="create/client" method="POST">
 	@csrf
+	<h2>Добавить клиента</h2>
 	<p>ФИО</p>
 	<input type="text" name="name">
 	<p>Пол</p>

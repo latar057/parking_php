@@ -18,7 +18,7 @@ class OneController extends Controller
     }
 
     public function create() {
-        # Отображение форм добавления данных
+        # Отображение форм добавления данных клиента и автомобиля
         return view('create');
     }
     
@@ -62,6 +62,49 @@ class OneController extends Controller
     public function update(Request $request) {
         # Отображение обнавления данных
         $id = $request->query('id');
-        return view('updates', ['id' => $id]);
+        $update_table = DB::select(
+            "SELECT * 
+            FROM clients
+                INNER JOIN cars ON cars.client_id = clients.id
+            WHERE client_id = $id"
+            );
+        // dd($update_table);
+        return view('update', ['update_table' => $update_table]);
+    }
+
+    public function updateClient(Request $request) {
+        # Редактирование клиента
+        DB::update(
+            "UPDATE clients
+            SET name = ?, gender = ?, phone = ?, adress = ?, car = ?
+            WHERE id = $request->client_id",
+            [
+                $request->name,
+                $request->gender,
+                $request->number,
+                $request->adress,
+                $request->car
+            ]
+        );
+
+        return redirect()->route('update', ['id' => $request->client_id]);
+    }
+
+    public function updateCar(Request $request) {
+        # Редактирование автомобилей
+        DB::update(
+            "UPDATE cars
+            SET brand = ?, model = ?, color = ?, number = ?, flag = ?
+            WHERE client_id = $request->client_id",
+            [
+                $request->brand,
+                $request->model,
+                $request->color,
+                $request->number,
+                $request->flag
+            ]
+        );
+
+        return redirect()->route('update', ['id' => $request->client_id]);
     }
 }

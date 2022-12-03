@@ -20,7 +20,7 @@
 		<td>{{ $el->name }}</td>
 		<td>{{ $el->brand }}</td>
 		<td>{{ $el->number }}</td>
-		<td><a href="updates?id={{ $el->client_id }}">Редактировать</a></td>
+		<td><a href="update?id={{ $el->client_id }}">Редактировать</a></td>
 		<td><a href="" style="color: red;">Удалить</a></td>
 	</tr>
 	@endforeach
