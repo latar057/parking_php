@@ -19,14 +19,18 @@ class CreateCarsTable extends Migration
             $table->string('model');
             $table->string('color');
             $table->string('number')->unique();
-            $table->boolean('flag');
+            $table->string('flag');
             $table->timestamps();
 
             $table->unsignedBigInteger('client_id')->nullable();
 
             $table->index('client_id', 'car_client_idx');
 
-            $table->foreign('client_id', 'car_client_fk')->on('clients')->references('id');
+            $table->foreign('client_id', 'car_client_fk')
+                  ->on('clients')
+                  ->references('id')
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade');
         });
     }
 

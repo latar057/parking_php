@@ -17,12 +17,10 @@ class CreateClientsTable extends Migration
             $table->id();
             $table->string('name', 100);
             $table->string('gender', 1);
-            $table->integer('phone')->unique();
+            $table->decimal('phone', $precision = 11, $scale = 0)->unique();
             $table->string('adress', 200);
             $table->integer('car');
             $table->timestamps();
-
-            
         });
     }
 

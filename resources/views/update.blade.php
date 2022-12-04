@@ -40,8 +40,8 @@
 	<input type="text" name="number" value="{{ $el->number }}">
 	<p>Статус</p>
 	<select name="flag">
-		<option value="1" @if($el->flag == 1) selected @endif>находится</option>
-		<option value="0" @if($el->flag == 0) selected @endif>отсутсвует</option>
+		<option value="находится" @if($el->flag == 1) selected @endif>находится</option>
+		<option value="отсутствует" @if($el->flag == 0) selected @endif>отсутсвует</option>
 	</select>
 
 	<input type="submit" value="Редактировать"></input>

@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 # Чтение данных
-Route::get('/clients', 'OneController@read');
+Route::get('/clients', 'OneController@read')->name('clients');
 
 # Добавление данных
 Route::get('/create', 'OneController@create')->name('create');
@@ -25,3 +25,6 @@ Route::post('/create/car', 'OneController@createCar');
 Route::get('/update', 'OneController@update')->name('update');
 Route::post('/update/client', 'OneController@updateClient');
 Route::post('update/car', 'OneController@updateCar');
+
+# Удаление данных
+Route::match(['get', 'post'], '/deleted', 'OneController@deleted');

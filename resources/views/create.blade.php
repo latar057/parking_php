@@ -38,8 +38,8 @@
 	<input type="text" name="number">
 	<p>Статус</p>
 	<select name="flag">
-		<option value="1">находится</option>
-		<option value="0">отсутсвует</option>
+		<option value="находится">находится</option>
+		<option value="отсутсвует">отсутсвует</option>
 	</select>
 
 	<input type="submit" value="Добавить"></input>

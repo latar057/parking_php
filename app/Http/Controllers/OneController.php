@@ -107,4 +107,14 @@ class OneController extends Controller
 
         return redirect()->route('update', ['id' => $request->client_id]);
     }
+
+    public function deleted(Request $request) {
+        # Удаление данных
+        DB::delete(
+            "DELETE FROM cars"
+        );
+
+        return redirect()->route('clients');
+        // dd($request);
+    }
 }
