@@ -18,7 +18,7 @@ class CreateClientsTable extends Migration
             $table->string('name', 100);
             $table->string('gender', 1);
             $table->decimal('phone', $precision = 11, $scale = 0)->unique();
-            $table->string('adress', 200);
+            $table->string('adress', 200)->nullabe(true);
             $table->integer('car');
             $table->timestamps();
         });

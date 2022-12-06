@@ -10,18 +10,18 @@
 	@csrf
 	<h2>Добавить клиента</h2>
 	<p>ФИО</p>
-	<input type="text" name="name">
+	<input required type="text" name="name">
 	<p>Пол</p>
-	<select name="gender">
+	<select required name="gender">
 		<option value="м">м</option>
 		<option value="ж">ж</option>
 	</select>
 	<p>Телефон</p>
-	<input type="number" name="number">
+	<input required type="number" name="number">
 	<p>Адрес</p>
-	<input type="text" name="adress">
+	<input required type="text" name="adress">
 	<p>Количество машин</p>
-	<input type="number" name="car">
+	<input required type="number" name="car">
 	<input type="submit" value="Добавить">
 </form>
 <form action="create/car" method="POST">
@@ -29,19 +29,18 @@
 	<h2>Добавить автомобиль</h2>
 
 	<p>Марка автомобиля</p>
-	<input type="text" name="brand">
+	<input required type="text" name="brand">
 	<p>Модель автомобиля</p>
-	<input type="text" name="model">
+	<input required type="text" name="model">
 	<p>Цвет кузова</p>
-	<input type="text" name="color">
+	<input required type="text" name="color">
 	<p>Номер машины</p>
-	<input type="text" name="number">
+	<input required type="text" name="number">
 	<p>Статус</p>
-	<select name="flag">
+	<select required name="flag">
 		<option value="находится">находится</option>
 		<option value="отсутсвует">отсутсвует</option>
 	</select>
-
 	<input type="submit" value="Добавить"></input>
 </form>
 @endsection

@@ -66,9 +66,11 @@ class OneController extends Controller
             "SELECT * 
             FROM clients
                 INNER JOIN cars ON cars.client_id = clients.id
-            WHERE client_id = $id"
+            WHERE client_id = ?",
+            [
+                $id
+            ]
             );
-        // dd($update_table);
         return view('update', ['update_table' => $update_table]);
     }
 
@@ -77,13 +79,14 @@ class OneController extends Controller
         DB::update(
             "UPDATE clients
             SET name = ?, gender = ?, phone = ?, adress = ?, car = ?
-            WHERE id = $request->client_id",
+            WHERE id = ?",
             [
                 $request->name,
                 $request->gender,
                 $request->number,
                 $request->adress,
-                $request->car
+                $request->car,
+                $request->client_id
             ]
         );
 
@@ -95,13 +98,14 @@ class OneController extends Controller
         DB::update(
             "UPDATE cars
             SET brand = ?, model = ?, color = ?, number = ?, flag = ?
-            WHERE client_id = $request->client_id",
+            WHERE client_id = ?",
             [
                 $request->brand,
                 $request->model,
                 $request->color,
                 $request->number,
-                $request->flag
+                $request->flag,
+                $request->client_id
             ]
         );
 
@@ -111,10 +115,13 @@ class OneController extends Controller
     public function deleted(Request $request) {
         # Удаление данных
         DB::delete(
-            "DELETE FROM cars"
+            "DELETE FROM cars
+            WHERE number = ?",
+            [
+                $request->number
+            ]
         );
 
         return redirect()->route('clients');
-        // dd($request);
     }
 }
