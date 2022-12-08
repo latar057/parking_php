@@ -9,6 +9,7 @@
 @section('content')
 <table>
 	<tr>
+		<th></th>
 		<th>ФИО</th>
 		<th>Автомобиль</th>
 		<th>Государственный номер</th>
@@ -17,6 +18,7 @@
 	</tr>
 	@foreach($clients as $el)
 	<tr>
+		<td>{{ $loop->index + 1 }}</td>
 		<td>{{ $el->name }}</td>
 		<td>{{ $el->brand }}</td>
 		<td>{{ $el->number }}</td>
